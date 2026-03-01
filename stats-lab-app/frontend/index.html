@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stats Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div>
+        <h1>Stats Lab</h1>
+        <p class="sub">Upload a CSV → pick a column → run a statistical algorithm.</p>
+      </div>
+      <div class="actions">
+        <input id="apiBase" class="input" type="text" value="http://localhost:8000" aria-label="API base URL" />
+        <button id="themeBtn" class="btn ghost" type="button" title="Toggle theme">🌓</button>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>1) Upload CSV</h2>
+      <div class="row">
+        <input id="file" class="input" type="file" accept=".csv,text/csv" />
+        <button id="uploadBtn" class="btn primary" type="button">Upload</button>
+      </div>
+      <p id="uploadMsg" class="msg" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <h2>2) Configure Analysis</h2>
+      <div class="grid">
+        <label class="field">
+          <span>Dataset ID</span>
+          <input id="datasetId" class="input" type="text" placeholder="Upload first…" readonly />
+        </label>
+
+        <label class="field">
+          <span>Column</span>
+          <select id="column" class="input"></select>
+        </label>
+
+        <label class="field">
+          <span>Algorithm</span>
+          <select id="algo" class="input">
+            <option value="summary" selected>Summary statistics</option>
+            <option value="histogram">Histogram</option>
+            <option value="uniform_ks">Uniform test (KS vs Uniform[min,max])</option>
+            <option value="normal_jb">Normality test (Jarque–Bera)</option>
+            <option value="zscores">Z-scores</option>
+          </select>
+        </label>
+
+        <label class="field" id="binsWrap">
+          <span>Histogram bins</span>
+          <input id="bins" class="input" type="number" min="3" max="60" value="12" />
+        </label>
+      </div>
+
+      <div class="row end">
+        <button id="runBtn" class="btn primary" type="button">Run</button>
+      </div>
+
+      <p id="runMsg" class="msg" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <h2>3) Results</h2>
+      <div class="split">
+        <div>
+          <pre id="out" class="out" aria-label="Result JSON"></pre>
+        </div>
+        <div class="chartWrap">
+          <canvas id="chart" width="520" height="360" aria-label="Chart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Data stays on your machine (backend stores uploads in <code>backend/uploads</code>). For shared deployments, add auth + stricter CORS.
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
