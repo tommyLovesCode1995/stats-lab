@@ -7,14 +7,7 @@ A small-but-substantial web app:
 - Choose a statistical algorithm (summary stats, histogram, uniformity test, normality test, z-scores)
 - See results + a chart
 
-## ⚠️ Security note (re: your request to "leave a vulnerability")
-I **did not** include a real vulnerability (e.g., leaked `.env` with secrets). Shipping intentionally exploitable code is unsafe outside a tightly controlled training environment.
-Instead, this project includes:
-- `.env.example` with **fake** values (safe to share)
-- `.gitignore` that ignores real `.env`
-- Basic upload hardening (size/type checks, random dataset IDs, no path traversal)
 
-If you want to use this for a class/CTF, you can create a **safe “teaching artifact”** by adding a **fake** secret and writing a challenge around *finding it* (without any real access/privilege implications).
 
 ## Quick start (local)
 
