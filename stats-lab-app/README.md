@@ -53,3 +53,8 @@ stats-lab-app/
     styles.css
   .gitignore
 ```
+
+Built by Thompson Albert 
+- thompsonalb@gmail.com
+
+
